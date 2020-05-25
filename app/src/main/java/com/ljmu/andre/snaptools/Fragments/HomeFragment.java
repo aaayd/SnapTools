@@ -31,8 +31,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
-import static com.ljmu.andre.GsonPreferences.Preferences.getPref;
-import static com.ljmu.andre.GsonPreferences.Preferences.putPref;
+import static com.jaqxues.akrolyb.prefs.PrefManagerKt.getPref;
+import static com.jaqxues.akrolyb.prefs.PrefManagerKt.putPref;
 import static com.ljmu.andre.snaptools.Utils.FrameworkPreferencesDef.SHOWN_ANDROID_P_WARNING;
 
 /**
@@ -68,6 +68,21 @@ public class HomeFragment extends FragmentHelper {
         txtAppVersion.setText(BuildConfig.VERSION_NAME);
         setTutorialDetails(TUTORIAL_DETAILS);
 
+<<<<<<< HEAD
+=======
+        //resizeThis();
+
+        if (!getPref(SHOWN_ANDROID_P_WARNING) && VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            DialogFactory.createErrorDialog(
+                    getActivity(),
+                    getString(R.string.android_p_warning_title),
+                    getString(R.string.android_p_warning_message)
+            ).show();
+
+            putPref(SHOWN_ANDROID_P_WARNING, true);
+        }
+
+>>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
         return layoutContainer;
     }
 

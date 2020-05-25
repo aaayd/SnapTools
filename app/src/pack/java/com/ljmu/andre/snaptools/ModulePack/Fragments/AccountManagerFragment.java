@@ -1,12 +1,5 @@
 package com.ljmu.andre.snaptools.ModulePack.Fragments;
 
-import com.ljmu.andre.snaptools.ModulePack.Utils.AccountManagerUtils.loadSnapchatAccountModels;
-import com.ljmu.andre.snaptools.Utils.FileUtils.getCreateDir;
-import com.ljmu.andre.snaptools.Utils.ResourceUtils.getDSLView;
-import com.ljmu.andre.snaptools.Utils.ResourceUtils.getDrawable;
-import com.ljmu.andre.snaptools.Utils.ResourceUtils.getIdFromString;
-import com.ljmu.andre.snaptools.Utils.StringUtils.htmlHighlight;
-
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
@@ -48,6 +41,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
+import static com.ljmu.andre.snaptools.ModulePack.Utils.AccountManagerUtils.loadSnapchatAccountModels;
+import static com.ljmu.andre.snaptools.Utils.FileUtils.getCreateDir;
+import static com.ljmu.andre.snaptools.Utils.ResourceUtils.getDSLView;
+import static com.ljmu.andre.snaptools.Utils.ResourceUtils.getDrawable;
+import static com.ljmu.andre.snaptools.Utils.ResourceUtils.getIdFromString;
+import static com.ljmu.andre.snaptools.Utils.StringUtils.htmlHighlight;
 
 /**
  * This class was created by Andre R M (SID: 701439)
@@ -80,11 +79,11 @@ public class AccountManagerFragment extends FragmentHelper {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewProvider = new AccountManagerViewProvider(
                 getActivity(),
-        this::handleEvent,
-        this::handleAccountEvent,
-        accountModelList,
-        viewGroup -> accountsContainer = viewGroup,
-        viewGroup -> settingsContainer = viewGroup
+                this::handleEvent,
+                this::handleAccountEvent,
+                accountModelList,
+                viewGroup -> accountsContainer = viewGroup,
+                viewGroup -> settingsContainer = viewGroup
         );
 
         mainContainer = viewProvider.getMainContainer();
@@ -159,9 +158,9 @@ public class AccountManagerFragment extends FragmentHelper {
 
         ThemedDialog progressDialog = DialogFactory.createProgressDialog(
                 getActivity(),
-        "Decrypting Account Information",
-        "Account information decryption in progress... This should only take a moment",
-        false
+                "Decrypting Account Information",
+                "Account information decryption in progress... This should only take a moment",
+                false
         );
 
         progressDialog.show();
@@ -225,11 +224,11 @@ public class AccountManagerFragment extends FragmentHelper {
                         List<SnapchatAccountModel> validAccountModelList = new ArrayList<>();
 
                         for (SnapchatAccountModel accountModel : snapchatAccountModels) {
-                        if (accountModel.hasFailed())
-                            failedDecryptions++;
-                        else
-                            validAccountModelList.add(accountModel);
-                    }
+                            if (accountModel.hasFailed())
+                                failedDecryptions++;
+                            else
+                                validAccountModelList.add(accountModel);
+                        }
 
                         if (failedDecryptions > 0 && failedDecryptions == snapchatAccountModels.size()) {
                             displayPasswordError();
@@ -296,22 +295,22 @@ public class AccountManagerFragment extends FragmentHelper {
 
         switch (event) {
             case RETRY_CREDENTIALS:
-            displayCredentialsDialog(this::generateAccountData);
-            break;
+                displayCredentialsDialog(this::generateAccountData);
+                break;
             case BACKUP_ACCOUNT:
-            if (masterPassword == null) {
-                SafeToastAdapter.showErrorToast(
-                        getActivity(),
-                        "Account Unlocking required before backing up an account"
-                );
+                if (masterPassword == null) {
+                    SafeToastAdapter.showErrorToast(
+                            getActivity(),
+                            "Account Unlocking required before backing up an account"
+                    );
 
-                return;
-            }
+                    return;
+                }
 
-            backupSnapchatAccount();
-            break;
+                backupSnapchatAccount();
+                break;
             default:
-            Timber.e("Unknown AccountManagerEvent: " + event);
+                Timber.e("Unknown AccountManagerEvent: " + event);
         }
     }
 
@@ -356,25 +355,25 @@ public class AccountManagerFragment extends FragmentHelper {
                                 masterPassword,
                                 true,
                                 result -> {
-                        Timber.d("Result: " + result.toString());
+                                    Timber.d("Result: " + result.toString());
 
-                        if (!result.getKey()) {
-                            SafeToastAdapter.showErrorToast(
-                                    getActivity(),
-                                    (String) result.getValue()
-                            );
-                            return;
-                        }
+                                    if (!result.getKey()) {
+                                        SafeToastAdapter.showErrorToast(
+                                                getActivity(),
+                                                (String) result.getValue()
+                                        );
+                                        return;
+                                    }
 
-                        SafeToastAdapter.showDefaultToast(
-                                getActivity(),
-                                "Successfully backed up Snapchat Account"
-                        );
+                                    SafeToastAdapter.showDefaultToast(
+                                            getActivity(),
+                                            "Successfully backed up Snapchat Account"
+                                    );
 
-                        SnapchatAccountModel accountModel = (SnapchatAccountModel) result.getValue();
-                        accountModelList.add(accountModel);
-                        accountListAdapter.notifyDataSetChanged();
-                    }
+                                    SnapchatAccountModel accountModel = (SnapchatAccountModel) result.getValue();
+                                    accountModelList.add(accountModel);
+                                    accountListAdapter.notifyDataSetChanged();
+                                }
                         );
                     }
                 }
@@ -384,8 +383,8 @@ public class AccountManagerFragment extends FragmentHelper {
     private void displayCredentialsDialog(String message, Callable<String> resultCallable) {
         boolean oldApk = Constants.getApkVersionCode() < 66;
         int drawableId = oldApk ?
-        getDrawable(getActivity(), "error_header") :
-        getDrawable(getActivity(), "lock_header");
+                getDrawable(getActivity(), "error_header") :
+                getDrawable(getActivity(), "lock_header");
 
         new ThemedDialog(getActivity())
                 .setTitle("Credentials Required")
@@ -395,17 +394,17 @@ public class AccountManagerFragment extends FragmentHelper {
                                 .setHint("Manager Password")
                                 .setMessage(message)
                                 .setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
-                .setOkayClickListener(
-                        new ThemedClickListener() {
-                            @Override
-                            public void clicked(ThemedDialog themedDialog) {
-                                themedDialog.dismiss();
-                                String password = themedDialog.<TextInputBasic>getExtension().getInputMessage().trim();
-                                resultCallable.call(password);
-                            }
-                        }
-                )
-        ).show();
+                                .setOkayClickListener(
+                                        new ThemedClickListener() {
+                                            @Override
+                                            public void clicked(ThemedDialog themedDialog) {
+                                                themedDialog.dismiss();
+                                                String password = themedDialog.<TextInputBasic>getExtension().getInputMessage().trim();
+                                                resultCallable.call(password);
+                                            }
+                                        }
+                                )
+                ).show();
     }
 
     private Result<Boolean, String> isIdentifierValid(String identifier) {
@@ -413,9 +412,9 @@ public class AccountManagerFragment extends FragmentHelper {
             return new BadResult("Entered empty identifier");
 
         for (SnapchatAccountModel accountModel : accountModelList) {
-        if (accountModel.getDecryptedIdentifier().equals(identifier))
-            return new BadResult("Identifier already used");
-    }
+            if (accountModel.getDecryptedIdentifier().equals(identifier))
+                return new BadResult("Identifier already used");
+        }
 
         return new Result<>(true, null);
     }
@@ -439,11 +438,11 @@ public class AccountManagerFragment extends FragmentHelper {
 
         switch (accountEventResult.getKey()) {
             case DELETE:
-            showAccountDeletionPrompt(accountModel);
-            break;
+                showAccountDeletionPrompt(accountModel);
+                break;
             case RESTORE:
-            showAccountRestorePrompt(accountModel);
-            break;
+                showAccountRestorePrompt(accountModel);
+                break;
 
         }
     }
@@ -460,34 +459,34 @@ public class AccountManagerFragment extends FragmentHelper {
                         themedDialog.dismiss();
                         displayCredentialsDialog("Confirm Account Manager Password",
                                 s -> {
-                        if (!s.equals(masterPassword)) {
-                            SafeToastAdapter.showErrorToast(
-                                    getActivity(),
-                                    "Supplied password incorrect"
-                            );
+                                    if (!s.equals(masterPassword)) {
+                                        SafeToastAdapter.showErrorToast(
+                                                getActivity(),
+                                                "Supplied password incorrect"
+                                        );
 
-                            return;
-                        }
+                                        return;
+                                    }
 
-                        Result<Boolean, String> deleteAccountResult =
-                        AccountManagerUtils.deleteAccount(accountsDir, accountModel);
+                                    Result<Boolean, String> deleteAccountResult =
+                                            AccountManagerUtils.deleteAccount(accountsDir, accountModel);
 
-                        if (!deleteAccountResult.getKey()) {
-                            SafeToastAdapter.showErrorToast(
-                                    getActivity(),
-                                    deleteAccountResult.getValue()
-                            );
+                                    if (!deleteAccountResult.getKey()) {
+                                        SafeToastAdapter.showErrorToast(
+                                                getActivity(),
+                                                deleteAccountResult.getValue()
+                                        );
 
-                            return;
-                        }
+                                        return;
+                                    }
 
-                        SafeToastAdapter.showDefaultToast(
-                                getActivity(),
-                                deleteAccountResult.getValue()
-                        );
+                                    SafeToastAdapter.showDefaultToast(
+                                            getActivity(),
+                                            deleteAccountResult.getValue()
+                                    );
 
-                        generateAccountData(masterPassword, true);
-                    });
+                                    generateAccountData(masterPassword, true);
+                                });
                     }
                 }
         ).show();
@@ -508,20 +507,20 @@ public class AccountManagerFragment extends FragmentHelper {
                                 masterPassword,
                                 accountModel,
                                 restoreAccountResult -> {
-                        if (!restoreAccountResult.getKey()) {
-                            SafeToastAdapter.showErrorToast(
-                                    getActivity(),
-                                    restoreAccountResult.getValue()
-                            );
+                                    if (!restoreAccountResult.getKey()) {
+                                        SafeToastAdapter.showErrorToast(
+                                                getActivity(),
+                                                restoreAccountResult.getValue()
+                                        );
 
-                            return;
-                        }
+                                        return;
+                                    }
 
-                        SafeToastAdapter.showDefaultToast(
-                                getActivity(),
-                                restoreAccountResult.getValue()
-                        );
-                    }
+                                    SafeToastAdapter.showDefaultToast(
+                                            getActivity(),
+                                            restoreAccountResult.getValue()
+                                    );
+                                }
                         );
                     }
                 }
