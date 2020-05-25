@@ -1,37 +1,39 @@
-package com.ljmu.andre.snaptools.ModulePack.Utils
+package com.ljmu.andre.snaptools.ModulePack.Utils;
 
-import android.widget.ImageView
-import com.jaqxues.akrolyb.prefs.Preference
-import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.StealthLocationOverlay.StealthPosition
-import com.ljmu.andre.snaptools.ModulePack.Notifications.DotNotification.DotLocation
-import com.ljmu.andre.snaptools.ModulePack.Notifications.SaveNotification.NotificationType
-import com.ljmu.andre.snaptools.ModulePack.Notifications.StackingDotNotification.StackingOrientation
-import java.util.*
+import androidx.annotation.NonNull;
+import android.widget.ImageView.ScaleType;
+
+import com.ljmu.andre.ConstantDefiner.ConstantDefiner;
+import com.ljmu.andre.GsonPreferences.Preferences.ConditionalCheck;
+import com.ljmu.andre.GsonPreferences.Preferences.Preference;
+import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.StealthLocationOverlay.StealthPosition;
+import com.ljmu.andre.snaptools.ModulePack.Notifications.DotNotification.DotLocation;
+import com.ljmu.andre.snaptools.ModulePack.Notifications.SaveNotification.NotificationType;
+import com.ljmu.andre.snaptools.ModulePack.Notifications.StackingDotNotification.StackingOrientation;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
+import static com.ljmu.andre.GsonPreferences.Preferences.getPref;
+import static com.ljmu.andre.snaptools.Utils.FrameworkPreferencesDef.CONTENT_PATH;
 
 /**
  * This class was created by Andre R M (SID: 701439)
  * It and its contents are free to use by all
  */
-object ModulePreferenceDef {
+
+public class ModulePreferenceDef extends ConstantDefiner<Preference> {
     /**
      * ===========================================================================
      * Strings
      * ===========================================================================
      */
-    @JvmField
-    val CUSTOM_MEDIA_PATH = Preference<String?>(
-            "CUSTOM_MEDIA_PATH",
-            null, String::class.java
-    )
-    @JvmField
-    val FILTER_BACKGROUND_SAMPLE_PATH = Preference<String?>(
+    public static final Preference FILTER_BACKGROUND_SAMPLE_PATH = new Preference(
             "FILTER_BACKGROUND_SAMPLE_PATH",
-            null, String::class.java
-    )
-    @JvmField
-    val STORAGE_FORMAT = Preference(
+            null, String.class
+    );
+    public static final Preference STORAGE_FORMAT = new Preference(
             "STORAGE_FORMAT",
-<<<<<<< HEAD
             "SnapType->Username->Snaps", String.class
     );
 
@@ -85,432 +87,420 @@ object ModulePreferenceDef {
         }
     });
 
+    public static final Preference ACCOUNTS_PATH = new Preference(
+            "ACCOUNTS_PATH",
+            null, String.class, new ConditionalCheck() {
+        @NonNull
+        @Override
+        protected Object performConditionCheck(Preference preference, Object preferenceVal) {
+            return getPref(CONTENT_PATH) + "Accounts/";
+        }
+    });
+
     public static final Preference RECEIVED_FOLDER_NAME = new Preference(
-=======
-            "SnapType->Username->Snaps", String::class.java
-    )
-    @JvmField
-    val RECEIVED_FOLDER_NAME = Preference(
->>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
             "RECEIVED_FOLDER_NAME",
-            "Received", String::class.java
-    )
-    @JvmField
-    val STORY_FOLDER_NAME = Preference(
+            "Received", String.class
+    );
+
+    public static final Preference STORY_FOLDER_NAME = new Preference(
             "STORY_FOLDER_NAME",
-            "Stories", String::class.java
-    )
-    @JvmField
-    val CHAT_FOLDER_NAME = Preference(
+            "Stories", String.class
+    );
+
+    public static final Preference CHAT_FOLDER_NAME = new Preference(
             "CHAT_FOLDER_NAME",
-            "ChatMedia", String::class.java
-    )
-    @JvmField
-    val GROUP_FOLDER_NAME = Preference(
+            "ChatMedia", String.class
+    );
+
+    public static final Preference GROUP_FOLDER_NAME = new Preference(
             "GROUP_FOLDER_NAME",
-            "Groups", String::class.java
-    )
-    @JvmField
-    val SENT_FOLDER_NAME = Preference(
+            "Groups", String.class
+    );
+
+    public static final Preference SENT_FOLDER_NAME = new Preference(
             "SENT_FOLDER_NAME",
-            "Sent", String::class.java
-    )
-    @JvmField
-    val SAVE_NOTIFICATION_TYPE = Preference(
+            "Sent", String.class
+    );
+
+    public static final Preference SAVE_NOTIFICATION_TYPE = new Preference(
             "SAVE_NOTIFICATION_TYPE",
-            NotificationType.DOT.displayText, String::class.java
-    )
-    @JvmField
-    val DOT_LOCATION = Preference(
+            NotificationType.DOT.getDisplayText(), String.class
+    );
+
+    public static final Preference DOT_LOCATION = new Preference(
             "DOT_LOCATION",
-            DotLocation.BOTTOM_LEFT.displayText, String::class.java
-    )
-    @JvmField
-    val STACKED_ORIENTATION = Preference(
+            DotLocation.BOTTOM_LEFT.getDisplayText(), String.class
+    );
+
+    public static final Preference STACKED_ORIENTATION = new Preference(
             "STACKED_ORIENTATION",
-            StackingOrientation.HORIZONTAL.displayText, String::class.java
-    )
-    @JvmField
-    val FILTER_SCALING_TYPE = Preference(
+            StackingOrientation.HORIZONTAL.getDisplayText(), String.class
+    );
+
+    public static final Preference FILTER_SCALING_TYPE = new Preference(
             "FILTER_SCALING_TYPE",
-            ImageView.ScaleType.FIT_CENTER.name, String::class.java
-    )
-    @JvmField
-    val CURRENT_FONT = Preference(
+            ScaleType.FIT_CENTER.name(), String.class
+    );
+
+    public static final Preference CURRENT_FONT = new Preference(
             "CURRENT_FONT",
-            "Default", String::class.java
-    )
-    @JvmField
-    val STEALTH_SNAP_BUTTON_LOCATION = Preference(
+            "Default", String.class
+    );
+
+    public static final Preference SC_USERNAME = new Preference(
+            "SC_USERNAME",
+            "", String.class
+    );
+
+    public static final Preference STEALTH_SNAP_BUTTON_LOCATION = new Preference(
             "STEALTH_SNAP_BUTTON_LOCATION",
-<<<<<<< HEAD
             StealthPosition.TOP.name(), String.class
     );
 
-    public static final Preference CUSTOM_NOTIFICATION_TEXTS = new Preference(
-            "CUSTOM_NOTIFICATION_TEXTS",
-            new HashMap<String, String>(), HashMap.class
-    );
-=======
-            StealthPosition.TOP.name, String::class.java
-    )
->>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
     // ===========================================================================
+
     /**
      * ===========================================================================
      * Experimental Feature States
      * ===========================================================================
      */
-    @JvmField
-    val FORCE_INSIGHTS_STATE = Preference(
+
+    public static final Preference FORCE_INSIGHTS_STATE = new Preference(
             "FORCE_INSIGHTS_STATE",
-            "Default", String::class.java
-    ) // developerOptionsImpalaForceShowInsights
-
+            "Default", String.class
+    ); // developerOptionsImpalaForceShowInsights
     /*true, false*/
-    @JvmField
-    val FORCE_MULTI_SNAP_STATE = Preference(
+
+    public static final Preference FORCE_MULTI_SNAP_STATE = new Preference(
             "FORCE_MULTI_SNAP_STATE",
-            "Default", String::class.java
-    ) // magikarp_overwrite
-
+            "Default", String.class
+    ); // magikarp_overwrite
     /*OVERWRITE_OFF, FORCE_ENABLED, FORCE_DISABLED;*/
-    @JvmField
-    val FORCE_CHAT_VIDEO_STATE = Preference(
+
+    public static final Preference FORCE_CHAT_VIDEO_STATE = new Preference(
             "FORCE_CHAT_VIDEO_STATE",
-            "Default", String::class.java
-    ) // chat_video_enabled
-
+            "Default", String.class
+    );// chat_video_enabled
     /*true, false*/
-    @JvmField
-    val FORCE_ANIMATED_CONTENT_STATE = Preference(
+
+    public static final Preference FORCE_ANIMATED_CONTENT_STATE = new Preference(
             "FORCE_ANIMATED_CONTENT_STATE",
-            "Default", String::class.java
-    ) // animated_content_overwrite
-
+            "Default", String.class
+    );// animated_content_overwrite
     /*OVERWRITE_OFF, FORCE_ENABLED, FORCE_DISABLED;*/
-    @JvmField
-    val FORCE_GIPHY_STATE = Preference(
+
+    public static final Preference FORCE_GIPHY_STATE = new Preference(
             "FORCE_GIPHY_STATE",
-            "Default", String::class.java
-    ) // giphy_in_preview
-
+            "Default", String.class
+    );// giphy_in_preview
     /*true, false*/
-    @JvmField
-    val FORCE_CAPTIONV2_STATE = Preference(
+
+    public static final Preference FORCE_CAPTIONV2_STATE = new Preference(
             "FORCE_CAPTIONV2_STATE",
-            "Default", String::class.java
-    ) // caption_v2_overwrite
-
+            "Default", String.class
+    );// caption_v2_overwrite
     /*OVERWRITE_OFF, FORCE_ENABLED, FORCE_DISABLED;*/
-    @JvmField
-    val FORCE_CAMERA2_STATE = Preference(
+
+    public static final Preference FORCE_CAMERA2_STATE = new Preference(
             "FORCE_CAMERA2_STATE",
-            "Default", String::class.java
-    ) // camera2_overwrite_state
-
+            "Default", String.class
+    );// camera2_overwrite_state
     /*OVERWRITE_OFF, FORCE_ENABLED, FORCE_DISABLED;*/
-    @JvmField
-    val FORCE_HANDSFREEREC_STATE = Preference(
+
+    public static final Preference FORCE_HANDSFREEREC_STATE = new Preference(
             "FORCE_HANDSFREEREC_STATE",
-            "Default", String::class.java
-    ) // developerOptionsHandsFreeRecordingMode
-
+            "Default", String.class
+    );// developerOptionsHandsFreeRecordingMode
     /*DISABLED, FULLY_ENABLED*/
-    @JvmField
-    val FORCE_FPS_OVERLAY_STATE = Preference(
+
+    public static final Preference FORCE_FPS_OVERLAY_STATE = new Preference(
             "FORCE_FPS_OVERLAY_STATE",
-            "Default", String::class.java
-    ) // developerOptionsShouldShowFpsOverlay
-
+            "Default", String.class
+    );// developerOptionsShouldShowFpsOverlay
     /*true, false*/
-    @JvmField
-    val FORCE_SKYFILTERS_STATE = Preference(
-            "FORCE_SKYFILTERS_STATE",
-            "Default", String::class.java
-    ) // sky_filters_overwrite
 
+    public static final Preference FORCE_SKYFILTERS_STATE = new Preference(
+            "FORCE_SKYFILTERS_STATE",
+            "Default", String.class
+    );// sky_filters_overwrite
     /*OVERWRITE_OFF, FORCE_ENABLED, FORCE_DISABLED;*/
-    @JvmField
-    val FORCE_EMOJIBRUSH_STATE = Preference(
+
+    public static final Preference FORCE_EMOJIBRUSH_STATE = new Preference(
             "FORCE_EMOJIBRUSH_STATE",
-            "Default", String::class.java
-    ) // emoji_brush
-    /*true, false*/ //	public static final Preference FORCE_CAMERA2_STATE = new Preference(
-    //			"FORCE_CAMERA2_STATE",
-    //			"Default", String.class
-    //	);
+            "Default", String.class
+    );// emoji_brush
+    /*true, false*/
+
+//	public static final Preference FORCE_CAMERA2_STATE = new Preference(
+//			"FORCE_CAMERA2_STATE",
+//			"Default", String.class
+//	);
+
     // ===========================================================================
+
     /**
      * ===========================================================================
      * Maps
      * ===========================================================================
      */
-    @JvmField
-    val SAVING_MODES = Preference(
+    public static final Preference SAVING_MODES = new Preference(
             "SAVING_MODES",
-            HashMap<String, String>(), HashMap::class.java
-    )
-    @JvmField
-    val SAVE_BUTTON_LOCATIONS = Preference(
+            new HashMap<String, String>(), HashMap.class
+    );
+
+    public static final Preference SAVE_BUTTON_LOCATIONS = new Preference(
             "SAVE_BUTTON_LOCATIONS",
-            HashMap<String, String>(), HashMap::class.java
-    )
-    @JvmField
-    val SAVE_BUTTON_WIDTHS = Preference(
+            new HashMap<String, String>(), HashMap.class
+    );
+
+    public static final Preference SAVE_BUTTON_WIDTHS = new Preference(
             "SAVE_BUTTON_WIDTHS",
-            HashMap<String, Int>(), HashMap::class.java
-    )
-    @JvmField
-    val SAVE_BUTTON_RELATIVE_HEIGHTS = Preference(
+            new HashMap<String, Integer>(), HashMap.class
+    );
+
+    public static final Preference SAVE_BUTTON_RELATIVE_HEIGHTS = new Preference(
             "SAVE_BUTTON_RELATIVE_HEIGHTS",
-            HashMap<String, Int>(), HashMap::class.java
-    )
-    @JvmField
-    val SAVE_BUTTON_OPACITIES = Preference(
+            new HashMap<String, Integer>(), HashMap.class
+    );
+
+    public static final Preference SAVE_BUTTON_OPACITIES = new Preference(
             "SAVE_BUTTON_OPACITIES",
-            HashMap<String, Int>(), HashMap::class.java
-    )
-    @JvmField
-    val FLING_VELOCITY = Preference(
+            new HashMap<String, Integer>(), HashMap.class
+    );
+
+    public static final Preference FLING_VELOCITY = new Preference(
             "FLING_VELOCITY",
-            HashMap<String, Int>(), HashMap::class.java
-    )
+            new HashMap<String, Integer>(), HashMap.class
+    );
+
     // ===========================================================================
+
     /**
      * ===========================================================================
      * Sets
      * ===========================================================================
      */
-    @JvmField
-    val BLOCKED_STORIES = Preference(
+    public static final Preference BLOCKED_STORIES = new Preference(
             "BLOCKED_STORIES",
-            HashSet<String>(), HashSet::class.java
-    )
+            new HashSet<String>(), HashSet.class
+    );
+
     // ===========================================================================
+
     /**
      * ===========================================================================
      * Booleans
      * ===========================================================================
      */
-    @JvmField
-    val SAVE_SENT_SNAPS = Preference(
+    public static final Preference SAVE_SENT_SNAPS = new Preference(
             "SAVE_SENT_SNAPS",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val LENS_AUTO_ENABLE = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference LENS_AUTO_ENABLE = new Preference(
             "LENS_AUTO_ENABLE",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val LENS_MERGE_ENABLE = Preference(
-            "LENS_MERGE_ENABLE",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val SHOW_LENS_NAMES = Preference(
-            "SHOW_LENS_NAMES",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val SAVE_CHAT_IN_SC = Preference(
-            "SAVE_CHAT_IN_SC",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val STORE_CHAT_MESSAGES = Preference(
-            "STORE_CHAT_MESSAGES",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val VIBRATE_ON_SAVE = Preference(
-            "VIBRATE_ON_SAVE",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val SHOW_SHARING_TUTORIAL = Preference(
-            "SHOW_SHARING_TUTORIAL",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val SHARING_AUTO_ROTATE = Preference(
-            "SHARING_AUTO_ROTATE",
-            false, Boolean::class.java
-    )
-    val LED_INFO_ALREADY_SENT = Preference(
-            "LED_INFO_ALREADY_SENT",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val FILTER_SHOW_SAMPLE_BACKGROUND = Preference(
-            "FILTER_SHOW_SAMPLE_BACKGROUND",
-            false, Boolean::class.java
-    )
-    val FILTER_NOW_PLAYING_ENABLED = Preference(
-            "FILTER_NOW_PLAYING_ENABLED",
-            true, Boolean::class.java
-    )
-    val FILTER_NOW_PLAYING_HIDE_EMPTY_ART = Preference(
-            "FILTER_NOW_PLAYING_HIDE_EMPTY_ART",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val STORY_BLOCKER_DISCOVER_BLOCKED = Preference(
-            "STORY_BLOCKER_DISCOVER_BLOCKED",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val STORY_BLOCKER_ADVERTS_BLOCKED = Preference(
-            "STORY_BLOCKER_ADVERTS_BLOCKED",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val STORY_BLOCKER_SHOW_BUTTON = Preference(
-            "STORY_BLOCKER_SHOW_BUTTON",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val FORCE_MULTILINE = Preference(
-            "FORCE_MULTILINE",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val CUT_BUTTON = Preference(
-            "CUT_BUTTON",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val COPY_BUTTON = Preference(
-            "COPY_BUTTON",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val PASTE_BUTTON = Preference(
-            "PASTE_BUTTON",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val UNLIMITED_VIEWING_VIDEOS = Preference(
-            "UNLIMITED_VIEWING_VIDEOS",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val UNLIMITED_VIEWING_IMAGES = Preference(
-            "UNLIMITED_VIEWING_IMAGES",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val BLOCK_TYPING_NOTIFICATIONS = Preference(
-            "BLOCK_TYPING_NOTIFICATIONS",
-<<<<<<< HEAD
             false, Boolean.class
     );
 
-    public static final Preference CHANGE_TYPING_NOTIFICATIONS = new Preference(
-            "CHANGE_TYPING_NOTIFICATIONS",
+    public static final Preference LENS_MERGE_ENABLE = new Preference(
+            "LENS_MERGE_ENABLE",
+            false, Boolean.class
+    );
+
+    public static final Preference SHOW_LENS_NAMES = new Preference(
+            "SHOW_LENS_NAMES",
+            true, Boolean.class
+    );
+
+    public static final Preference SAVE_CHAT_IN_SC = new Preference(
+            "SAVE_CHAT_IN_SC",
+            false, Boolean.class
+    );
+
+    public static final Preference STORE_CHAT_MESSAGES = new Preference(
+            "STORE_CHAT_MESSAGES",
+            true, Boolean.class
+    );
+
+    public static final Preference VIBRATE_ON_SAVE = new Preference(
+            "VIBRATE_ON_SAVE",
+            true, Boolean.class
+    );
+
+    public static final Preference SHOW_SHARING_TUTORIAL = new Preference(
+            "SHOW_SHARING_TUTORIAL",
+            true, Boolean.class
+    );
+
+    public static final Preference SHARING_AUTO_ROTATE = new Preference(
+            "SHARING_AUTO_ROTATE",
+            false, Boolean.class
+    );
+
+    public static final Preference LED_INFO_ALREADY_SENT = new Preference(
+            "LED_INFO_ALREADY_SENT",
+            false, Boolean.class
+    );
+
+    public static final Preference FILTER_SHOW_SAMPLE_BACKGROUND = new Preference(
+            "FILTER_SHOW_SAMPLE_BACKGROUND",
+            false, Boolean.class
+    );
+
+    public static final Preference FILTER_NOW_PLAYING_ENABLED = new Preference(
+            "FILTER_NOW_PLAYING_ENABLED",
+            true, Boolean.class
+    );
+
+    public static final Preference FILTER_NOW_PLAYING_HIDE_EMPTY_ART = new Preference(
+            "FILTER_NOW_PLAYING_HIDE_EMPTY_ART",
+            false, Boolean.class
+    );
+
+    public static final Preference STORY_BLOCKER_DISCOVER_BLOCKED = new Preference(
+            "STORY_BLOCKER_DISCOVER_BLOCKED",
+            true, Boolean.class
+    );
+
+    public static final Preference STORY_BLOCKER_ADVERTS_BLOCKED = new Preference(
+            "STORY_BLOCKER_ADVERTS_BLOCKED",
+            true, Boolean.class
+    );
+
+    public static final Preference STORY_BLOCKER_SHOW_BUTTON = new Preference(
+            "STORY_BLOCKER_SHOW_BUTTON",
+            true, Boolean.class
+    );
+
+    public static final Preference FORCE_MULTILINE = new Preference(
+            "FORCE_MULTILINE",
+            true, Boolean.class
+    );
+
+    public static final Preference CUT_BUTTON = new Preference(
+            "CUT_BUTTON",
+            true, Boolean.class
+    );
+
+    public static final Preference COPY_BUTTON = new Preference(
+            "COPY_BUTTON",
+            true, Boolean.class
+    );
+
+    public static final Preference PASTE_BUTTON = new Preference(
+            "PASTE_BUTTON",
+            true, Boolean.class
+    );
+
+    public static final Preference UNLIMITED_VIEWING_VIDEOS = new Preference(
+            "UNLIMITED_VIEWING_VIDEOS",
+            true, Boolean.class
+    );
+
+    public static final Preference UNLIMITED_VIEWING_IMAGES = new Preference(
+            "UNLIMITED_VIEWING_IMAGES",
+            true, Boolean.class
+    );
+
+    public static final Preference BLOCK_TYPING_NOTIFICATIONS = new Preference(
+            "BLOCK_TYPING_NOTIFICATIONS",
             false, Boolean.class
     );
 
     public static final Preference SHOW_CHAT_STEALTH_BUTTON = new Preference(
-=======
-            false, Boolean::class.java
-    )
-    @JvmField
-    val SHOW_CHAT_STEALTH_BUTTON = Preference(
->>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
             "SHOW_CHAT_STEALTH_BUTTON",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val SHOW_SNAP_STEALTH_BUTTON = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference SHOW_SNAP_STEALTH_BUTTON = new Preference(
             "SHOW_SNAP_STEALTH_BUTTON",
-            true, Boolean::class.java
-    )
-    val SHOW_CHAT_STEALTH_MESSAGE = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference SHOW_CHAT_STEALTH_MESSAGE = new Preference(
             "SHOW_CHAT_STEALTH_MESSAGE",
-            true, Boolean::class.java
-    )
-    val SHOW_SNAP_STEALTH_MESSAGE = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference SHOW_SNAP_STEALTH_MESSAGE = new Preference(
             "SHOW_SNAP_STEALTH_MESSAGE",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val DEFAULT_CHAT_STEALTH = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference DEFAULT_CHAT_STEALTH = new Preference(
             "DEFAULT_CHAT_STEALTH",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val BLOCK_OUTGOING_TYPING_NOTIFICATION = Preference(
+            false, Boolean.class
+    );
+
+    public static final Preference BLOCK_OUTGOING_TYPING_NOTIFICATION = new Preference(
             "BLOCK_OUTGOING_TYPING_NOTIFICATION",
-            false, Boolean::class.java
-    )
-    @JvmField
-    val DEFAULT_SNAP_STEALTH = Preference(
+            false, Boolean.class
+    );
+
+    public static final Preference DEFAULT_SNAP_STEALTH = new Preference(
             "DEFAULT_SNAP_STEALTH",
-            false, Boolean::class.java
-    )
-    val STEALTH_CHAT_BUTTON_LEFT = Preference(
+            false, Boolean.class
+    );
+
+    public static final Preference STEALTH_CHAT_BUTTON_LEFT = new Preference(
             "STEALTH_CHAT_BUTTON_LEFT",
-            true, Boolean::class.java
-    )
-    @JvmField
-    val STEALTH_MARK_STORY_VIEWED = Preference(
+            true, Boolean.class
+    );
+
+    public static final Preference STEALTH_MARK_STORY_VIEWED = new Preference(
             "STEALTH_MARK_STORY_VIEWED",
-            false, Boolean::class.java
-    )
+            false, Boolean.class
+    );
 
     /**
      * ===========================================================================
      * Integers
      * ===========================================================================
      */
-    @JvmField
-    val BATCHED_MEDIA_CAP = Preference(
+    public static final Preference BATCHED_MEDIA_CAP = new Preference(
             "BATCHED_MEDIA_CAP",
-            6, Int::class.java
-    )
-    val CURRENT_NOW_PLAYING_VIEW = Preference(
+            6, Integer.class
+    );
+    public static final Preference CURRENT_NOW_PLAYING_VIEW = new Preference(
             "CURRENT_NOW_PLAYING_VIEW",
-            0, Int::class.java
-    )
-    val NOW_PLAYING_BOTTOM_MARGIN = Preference(
+            0, Integer.class
+    );
+    public static final Preference NOW_PLAYING_BOTTOM_MARGIN = new Preference(
             "NOW_PLAYING_BOTTOM_MARGIN",
-            100, Int::class.java
-    )
-    val NOW_PLAYING_IMAGE_SIZE = Preference(
+            100, Integer.class
+    );
+    public static final Preference NOW_PLAYING_IMAGE_SIZE = new Preference(
             "NOW_PLAYING_IMAGE_SIZE",
-            200, Int::class.java
-    )
-    val STEALTH_CHAT_BUTTON_ALPHA = Preference(
+            200, Integer.class
+    );
+    public static final Preference STEALTH_CHAT_BUTTON_ALPHA = new Preference(
             "STEALTH_CHAT_BUTTON_ALPHA",
-            100, Int::class.java
-    )
-    val STEALTH_CHAT_BUTTON_PADDING = Preference(
+            100, Integer.class
+    );
+    public static final Preference STEALTH_CHAT_BUTTON_PADDING = new Preference(
             "STEALTH_CHAT_BUTTON_PADDING",
-            10, Int::class.java
-    )
-    val STEALTH_SNAP_BUTTON_ALPHA = Preference(
+            10, Integer.class
+    );
+    public static final Preference STEALTH_SNAP_BUTTON_ALPHA = new Preference(
             "STEALTH_SNAP_BUTTON_ALPHA",
-            100, Int::class.java
-    )
-    val STEALTH_SNAP_BUTTON_MARGIN = Preference(
+            100, Integer.class
+    );
+    public static final Preference STEALTH_SNAP_BUTTON_MARGIN = new Preference(
             "STEALTH_SNAP_BUTTON_MARGIN",
-            10, Int::class.java
-    )
-    val STEALTH_SNAP_BUTTON_SIZE = Preference(
+            10, Integer.class
+    );
+    public static final Preference STEALTH_SNAP_BUTTON_SIZE = new Preference(
             "STEALTH_SNAP_BUTTON_SIZE",
-            50, Int::class.java
-    )
+            50, Integer.class
+    );
 
     /**
      * ===========================================================================
      * Longs
      * ===========================================================================
      */
-    @JvmField
-    val LAST_CHECK_KNOWN_BUGS = Preference(
+    public static final Preference LAST_CHECK_KNOWN_BUGS = new Preference(
             "LAST_CHECK_KNOWN_BUGS",
-            0L, Long::class.java
-    )
+            0L, Long.class
+    );
 }
