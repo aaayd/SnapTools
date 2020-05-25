@@ -235,8 +235,13 @@ public class SettingsFragment extends FragmentHelper {
                                 CheckAPKUpdate.updateApk(
                                         getActivity(),
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         "https://github.com/haydhook/SnapTools_DataProvider/blob/master/Apks/Files/SnapTools-" + selection + ".apk?raw=true",
                                         getPref(TEMP_PATH),
+=======
+                                        "https://github.com/jaqxues/SnapTools_DataProvider/blob/master/Apks/Files/SnapTools-" + selection + ".apk?raw=true",
+                                        PathProvider.getTempPath(),
+>>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
 =======
                                         "https://github.com/jaqxues/SnapTools_DataProvider/blob/master/Apks/Files/SnapTools-" + selection + ".apk?raw=true",
                                         PathProvider.getTempPath(),

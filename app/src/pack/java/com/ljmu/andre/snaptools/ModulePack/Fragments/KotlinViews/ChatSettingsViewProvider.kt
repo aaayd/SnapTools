@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.view.ViewManager
 import android.widget.Button
 import android.widget.EditText
@@ -16,13 +17,22 @@ import com.ljmu.andre.GsonPreferences.Preferences.putPref
 =======
 import com.jaqxues.akrolyb.prefs.getPref
 >>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
+=======
+import com.jaqxues.akrolyb.prefs.getPref
+>>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
 import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.CustomViews.Companion.header
 import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.CustomViews.Companion.label
 import com.ljmu.andre.snaptools.ModulePack.Utils.KotlinUtils.Companion.toDp
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.ljmu.andre.snaptools.ModulePack.Utils.KotlinUtils.Companion.toId
 import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.*
 import com.ljmu.andre.snaptools.ModulePack.Utils.ViewFactory
+=======
+import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.BLOCK_TYPING_NOTIFICATIONS
+import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.SAVE_CHAT_IN_SC
+import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.STORE_CHAT_MESSAGES
+>>>>>>> f052d4d... Integrate Logger and Preferences from akrolyb
 =======
 import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.BLOCK_TYPING_NOTIFICATIONS
 import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.SAVE_CHAT_IN_SC
