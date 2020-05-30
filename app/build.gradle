@@ -229,4 +229,5 @@ dependencies {
             exclude group: 'android.support.annotation'
         }
     }
+    implementation 'com.github.jaqxues:Akrolyb:master-SNAPSHOT'
 }
