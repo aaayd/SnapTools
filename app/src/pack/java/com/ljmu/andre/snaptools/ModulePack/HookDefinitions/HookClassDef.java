@@ -81,7 +81,7 @@ public class HookClassDef extends ConstantDefiner<HookClassDef.HookClass> {
     public static final HookClass STORY_METADATA = new HookClass("STORY_METADATA", "tpp");
     public static final HookClass STORY_METADATA_LOADER = new HookClass("STORY_METADATA_LOADER", "acbz");
     public static final HookClass STORY_SNAP = new HookClass("STORY_SNAP", "ammt");
-    //public static final HookClass STORY_SNAP_AD_LOADER = new HookClass("STORY_SNAP_AD_LOADER", "abrz");
+    public static final HookClass STORY_SNAP_AD_LOADER = new HookClass("STORY_SNAP_AD_LOADER", "abrz");
     public static final HookClass STORY_SNAP_PAYLOAD_BUILDER = new HookClass("STORY_SNAP_PAYLOAD_BUILDER", "abtf");
     public static final HookClass STORY_SPONSORED = new HookClass("STORY_ADVERT", "eng");
     public static final HookClass STORY_STATUS_UPDATER = new HookClass("STORY_STATUS_UPDATER", "abts");

@@ -62,7 +62,7 @@ public class HookDef extends ConstantDefiner<HookDef.Hook> {
     public static final Hook LOAD_INITIAL_STORIES = new Hook("LOAD_INITIAL_STORIES", HookClassDef.STORY_MANAGER, "a", Integer.TYPE, Integer.TYPE, Integer.TYPE, HashMap.class, HashMap.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, List.class, Long.TYPE);
     public static final Hook LOAD_NEW_STORY = new Hook("LOAD_NEW_STORY", HookClassDef.STORY_MANAGER, "a", "amur");
     public static final Hook LOAD_STORIES = new Hook("LOAD_STORIES", HookClassDef.STORY_LOADER, "a", List.class);
-    //public static final Hook LOAD_STORY_SNAP_ADVERT = new Hook("LOAD_STORY_SNAP_ADVERT", HookClassDef.STORY_SNAP_AD_LOADER, "a", "euc", "euc"); // This doesn't work for some rea
+    public static final Hook LOAD_STORY_SNAP_ADVERT = new Hook("LOAD_STORY_SNAP_ADVERT", HookClassDef.STORY_SNAP_AD_LOADER, "a", STORY_SNAP_AD_LOADER.getStrClass(), "euc"); // This doesn't work for some rea
     public static final Hook MARK_DIRECT_CHAT_VIEWED_PRESENT = new Hook("MARK_DIRECT_CHAT_VIEWED_PRESENT", HookClassDef.CHAT_DIRECT_VIEW_MARKER, "a", "aipc", "aoyr");
     public static final Hook MARK_DIRECT_CHAT_VIEWED_UNPRESENT = new Hook("MARK_DIRECT_CHAT_VIEWED_UNPRESENT", HookClassDef.CHAT_DIRECT_VIEW_MARKER, "a", "aoyr", "aipc");
     public static final Hook MARK_GROUP_CHAT_VIEWED = new Hook("MARK_GROUP_CHAT_VIEWED", HookClassDef.CHAT_GROUP_VIEW_MARKER, "a", "aiqx", String.class);
