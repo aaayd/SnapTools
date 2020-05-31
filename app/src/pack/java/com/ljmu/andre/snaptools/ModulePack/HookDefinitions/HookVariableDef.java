@@ -25,7 +25,7 @@ public class HookVariableDef extends ConstantDefiner<HookVariableDef.HookVariabl
     public static final HookVariable SENT_BATCHED_VIDEO_MEDIAHOLDER = new HookVariable("SENT_BATCHED_VIDEO_MEDIAHOLDER", "c"); // Done
     public static final HookVariable SENT_MEDIA_BATCH_DATA = new HookVariable("SENT_MEDIA_BATCH_DATA", "cx"); // Done
     public static final HookVariable SENT_MEDIA_BITMAP = new HookVariable("SENT_MEDIA_BITMAP", "P"); // Done
-    public static final HookVariable SENT_MEDIA_TIMESTAMP = new HookVariable("SENT_MEDIA_TIMESTAMP", "az_"); // Done
+    public static final HookVariable SENT_MEDIA_TIMESTAMP = new HookVariable("SENT_MEDIA_TIMESTAMP", "bT"); // Done
     public static final HookVariable SENT_MEDIA_VIDEO_URI = new HookVariable("SENT_MEDIA_VIDEO_URI", "ba");
     public static final HookVariable SNAPCAPTIONVIEW_CONTEXT = new HookVariable("SNAPCAPTIONVIEW_CONTEXT", "b");
     public static final HookVariable SNAP_IS_ZIPPED = new HookVariable("SNAP_IS_ZIPPED", "aK"); // Done

@@ -753,11 +753,8 @@ public class Saving extends ModuleHelper {
             Timber.e(e);
             return null;
         }
-
-        //FIX TIMESTAMP
-        //long timestamp = getObjectField(SENT_MEDIA_TIMESTAMP, mediaHolder);
-        long timestamp = 2020;
-
+        
+        long timestamp = getObjectField(SENT_MEDIA_TIMESTAMP, mediaHolder);
         // Create Snap to get OutputFile =============================================
         SentSnap snap = new SentSnap()
                 .setContext(snapActivity)
