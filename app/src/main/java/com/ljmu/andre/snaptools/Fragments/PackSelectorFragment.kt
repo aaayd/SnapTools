@@ -67,7 +67,7 @@ class PackSelectorFragment : FragmentHelper() {
             bindToRecyclerView(recycler_pack_selector)
             addType(PackMetaData.type, PackMetaData.layoutRes)
             addType(ExpandableItemAdapter.TextItemEntity.type, ExpandableItemAdapter.TextItemEntity.layoutRes)
-            addType(LocalPackMetaData.LocalPackToolbarItem.type, LocalPackMetaData.LocalPackToolbarItem.layoutRes)
+            addType(LocalPackMetaData.type, LocalPackMetaData.layoutRes)
             addType(FailedPackMetaData.FailedPackToolbar.type, FailedPackMetaData.layoutRes)
             setEmptyView(R.layout.layout_empty_packs)
         }
@@ -85,7 +85,7 @@ class PackSelectorFragment : FragmentHelper() {
 
             // Animating
             recycler_pack_selector?.animateSequentGroup()
-            adapter.setNewData(packs.toMutableList() as List<ExpandableItemAdapter.ExpandableItemEntity<Any>>?)
+            adapter.setNewData(packs)
             swipe_layout.isRefreshing = false
         })
 
