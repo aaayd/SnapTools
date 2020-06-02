@@ -25,13 +25,12 @@ abstract class ExpandableAdapter<T: Any>(dataset: List<T>): RecyclerView.Adapter
             }
             notifyDataSetChanged()
         }
-    protected abstract val parentViewItemType: ParentViewItemType<T, out RecyclerView.ViewHolder>
-    private val expandedItems = mutableMapOf<T, List<ViewItem<T, out RecyclerView.ViewHolder>>>()
+    protected abstract val parentViewItemType: ParentViewItemType<T, in RecyclerView.ViewHolder>
+    private val expandedItems = mutableMapOf<T, List<ViewItem<T, in RecyclerView.ViewHolder>>>()
     private val viewTypes = Vector<ViewType<T, out RecyclerView.ViewHolder>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return (viewTypes[viewType] as ViewType<Any, RecyclerView.ViewHolder>)
-                .createViewType(parent, this as ExpandableListener<Any, RecyclerView.ViewHolder>)
+        return viewTypes[viewType].createViewType(parent, this)
     }
 
     // Parent and Child Items
@@ -41,15 +40,13 @@ abstract class ExpandableAdapter<T: Any>(dataset: List<T>): RecyclerView.Adapter
         var idx = -1
         for (value in dataset) {
             if (++idx == position) {
-                (parentViewItemType as ViewItem<Any, RecyclerView.ViewHolder>)
-                        .bindViewType(holder, value, this as ExpandableListener<Any, RecyclerView.ViewHolder>)
+                parentViewItemType.bindViewType(holder, value, this)
                 return
             }
             if (value in expandedItems) {
                 for (subItem in expandedItems[value]!!) {
                     if (++idx == position) {
-                        (subItem as ViewItem<Any, RecyclerView.ViewHolder>)
-                                .bindViewType(holder, value, this as ExpandableListener<Any, RecyclerView.ViewHolder>)
+                        subItem.bindViewType(holder, value, this)
                         return
                     }
                 }
@@ -59,7 +56,7 @@ abstract class ExpandableAdapter<T: Any>(dataset: List<T>): RecyclerView.Adapter
 
     fun <VH: RecyclerView.ViewHolder> registerViewType(type: ViewType<T, VH>) = viewTypes.add(type)
 
-    override fun expandItem(obj: T, items: List<ViewItem<T, out RecyclerView.ViewHolder>>) {
+    override fun expandItem(obj: T, items: List<ViewItem<T, RecyclerView.ViewHolder>>) {
         if (obj in expandedItems)
             throw IllegalArgumentException("Item already expanded")
         expandedItems[obj] = items
