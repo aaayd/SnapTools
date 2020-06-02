@@ -44,7 +44,6 @@ public class TimberUtils {
             }, "Debug");
         } else {
             plantCheck(new ReleaseTree(), "Release");
-            Common.plantFileLogger();
         }
     }
 
