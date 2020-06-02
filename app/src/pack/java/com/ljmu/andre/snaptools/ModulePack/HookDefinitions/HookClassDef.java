@@ -17,7 +17,7 @@ public class HookClassDef extends ConstantDefiner<HookClassDef.HookClass> {
     public static final HookClass CHAT_METADATA = new HookClass("CHAT_METADATA", "aswo");//
     public static final HookClass CHAT_METADATA_JSON_PARSER = new HookClass("CHAT_METADATA_JSON_PARSER", "aswp");//
     public static final HookClass CHAT_METADATA_JSON_PARSER_SECOND = new HookClass("CHAT_METADATA_JSON_PARSER_SECOND", "atjs");//
-    public static final HookClass CHAT_NOTIFICATION_CREATOR = new HookClass("CHAT_NOTIFICATION_CREATOR", "ahth");// UNSURE ON THIS ONE
+    public static final HookClass CHAT_NOTIFICATION_CREATOR = new HookClass("CHAT_NOTIFICATION_CREATOR", "ahqm");// UNSURE ON THIS ONE
     public static final HookClass CHAT_V10_BUILDER = new HookClass("CHAT_V10_BUILDER", "ahxy");//
     public static final HookClass CHAT_VIDEO = new HookClass("CHAT_VIDEO", "aipq");//
     public static final HookClass CHAT_VIDEO_METADATA = new HookClass("CHAT_VIDEO_METADATA", "aivs");//
@@ -81,7 +81,7 @@ public class HookClassDef extends ConstantDefiner<HookClassDef.HookClass> {
     public static final HookClass STORY_METADATA = new HookClass("STORY_METADATA", "tpp");
     public static final HookClass STORY_METADATA_LOADER = new HookClass("STORY_METADATA_LOADER", "acbz");
     public static final HookClass STORY_SNAP = new HookClass("STORY_SNAP", "ammt");
-    public static final HookClass STORY_SNAP_AD_LOADER = new HookClass("STORY_SNAP_AD_LOADER", "abrz");
+    //public static final HookClass STORY_SNAP_AD_LOADER = new HookClass("STORY_SNAP_AD_LOADER", "abrz");
     public static final HookClass STORY_SNAP_PAYLOAD_BUILDER = new HookClass("STORY_SNAP_PAYLOAD_BUILDER", "abtf");
     public static final HookClass STORY_SPONSORED = new HookClass("STORY_ADVERT", "eng");
     public static final HookClass STORY_STATUS_UPDATER = new HookClass("STORY_STATUS_UPDATER", "abts");

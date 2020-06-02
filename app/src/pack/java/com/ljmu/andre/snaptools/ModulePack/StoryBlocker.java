@@ -36,7 +36,7 @@ import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.FRIEND
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.LOAD_INITIAL_STORIES;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.LOAD_NEW_STORY;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.LOAD_STORIES;
-import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.LOAD_STORY_SNAP_ADVERT;
+//import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.LOAD_STORY_SNAP_ADVERT;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookVariableDef.STORY_COLLECTION_MAP;
 import static com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.BLOCKED_STORIES;
 import static com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.STORY_BLOCKER_ADVERTS_BLOCKED;
@@ -76,14 +76,14 @@ public class StoryBlocker extends ModuleHelper {
     @Override
     public void loadHooks(ClassLoader snapClassLoader, Context snapContext) {
         boolean blockDiscovery = getPref(STORY_BLOCKER_DISCOVER_BLOCKED);
-
+/*
         if (getPref(STORY_BLOCKER_ADVERTS_BLOCKED)) {
             hookMethod(
                     LOAD_STORY_SNAP_ADVERT,
                     XC_MethodReplacement.DO_NOTHING
             );
         }
-
+*/
         if (getPref(STORY_BLOCKER_SHOW_BUTTON)) {
 
             hookMethod(

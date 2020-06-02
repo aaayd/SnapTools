@@ -27,7 +27,7 @@ public class HookDef extends ConstantDefiner<HookDef.Hook> {
     public static final Hook CAMERA_IS_VISIBLE = new Hook("CAMERA_IS_VISIBLE", HookClassDef.CAMERA_FRAGMENT, "a", "aqst");
     public static final Hook CAPTION_CREATE_HOOK = new Hook("CAPTION_CREATE_HOOK", HookClassDef.CAPTION_MANAGER_CLASS, "onCreateActionMode", ActionMode.class, Menu.class);
     public static final Hook CHAT_IMAGE_GET_ALGORITHM = new Hook("CHAT_IMAGE_GET_ALGORITHM", HookClassDef.CHAT_IMAGE_METADATA, "b", HookClassDef.CHAT_VIDEO.getStrClass());
-    public static final Hook CHAT_ISSAVED_INAPP = new Hook("CHAT_ISSAVED_INAPP", (HookClassDef.HookClass) null, "cl", new Object[0]);
+    public static final Hook CHAT_ISSAVED_INAPP = new Hook("CHAT_ISSAVED_INAPP", (HookClassDef.HookClass) null, "eG_", new Object[0]);
     public static final Hook CHAT_MESSAGE_VIEW_MEASURE = new Hook("CHAT_MESSAGE_VIEW_MEASURE", HookClassDef.CHAT_MESSAGE_VIEW_HOLDER, "F", new Object[0]);
     public static final Hook CHAT_METADATA_READ = new Hook("CHAT_METADATA_READ", HookClassDef.CHAT_METADATA_JSON_PARSER, "a", "com.google.gson.stream.JsonReader");
     public static final Hook CHAT_METADATA_READ_SECOND = new Hook("CHAT_METADATA_READ_SECOND", HookClassDef.CHAT_METADATA_JSON_PARSER_SECOND, "a", "com.google.gson.stream.JsonReader");
@@ -62,7 +62,7 @@ public class HookDef extends ConstantDefiner<HookDef.Hook> {
     public static final Hook LOAD_INITIAL_STORIES = new Hook("LOAD_INITIAL_STORIES", HookClassDef.STORY_MANAGER, "a", Integer.TYPE, Integer.TYPE, Integer.TYPE, HashMap.class, HashMap.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, List.class, Long.TYPE);
     public static final Hook LOAD_NEW_STORY = new Hook("LOAD_NEW_STORY", HookClassDef.STORY_MANAGER, "a", "amur");
     public static final Hook LOAD_STORIES = new Hook("LOAD_STORIES", HookClassDef.STORY_LOADER, "a", List.class);
-    public static final Hook LOAD_STORY_SNAP_ADVERT = new Hook("LOAD_STORY_SNAP_ADVERT", HookClassDef.STORY_SNAP_AD_LOADER, "a", STORY_SNAP_AD_LOADER.getStrClass(), "euc"); // This doesn't work for some rea
+    //public static final Hook LOAD_STORY_SNAP_ADVERT = new Hook("LOAD_STORY_SNAP_ADVERT", HookClassDef.STORY_SNAP_AD_LOADER, "a", "euc", "euc"); // This doesn't work for some reason
     public static final Hook MARK_DIRECT_CHAT_VIEWED_PRESENT = new Hook("MARK_DIRECT_CHAT_VIEWED_PRESENT", HookClassDef.CHAT_DIRECT_VIEW_MARKER, "a", "aipc", "aoyr");
     public static final Hook MARK_DIRECT_CHAT_VIEWED_UNPRESENT = new Hook("MARK_DIRECT_CHAT_VIEWED_UNPRESENT", HookClassDef.CHAT_DIRECT_VIEW_MARKER, "a", "aoyr", "aipc");
     public static final Hook MARK_GROUP_CHAT_VIEWED = new Hook("MARK_GROUP_CHAT_VIEWED", HookClassDef.CHAT_GROUP_VIEW_MARKER, "a", "aiqx", String.class);

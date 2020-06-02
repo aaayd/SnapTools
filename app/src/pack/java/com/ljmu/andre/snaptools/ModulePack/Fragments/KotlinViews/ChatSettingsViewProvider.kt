@@ -96,7 +96,7 @@ class ChatSettingsViewProvider {
                             }
                         }
 
-                        /*
+
                         header("Custom Notification Settings")
 
                         themedSwitchCompatX(ResourceUtils.getStyle(activity, "DefaultSwitch")) {
@@ -166,7 +166,6 @@ class ChatSettingsViewProvider {
                                 }, activity)
                             }
                         }
-                        */
                     }
                 }
             }.view as T

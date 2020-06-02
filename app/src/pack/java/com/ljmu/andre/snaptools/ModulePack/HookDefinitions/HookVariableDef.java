@@ -18,7 +18,7 @@ public class HookVariableDef extends ConstantDefiner<HookVariableDef.HookVariabl
     public static final HookVariable LENS_CATEGORY = new HookVariable("LENS_CATEGORY", "a"); // Done
     public static final HookVariable LENS_CATEGORY_MAP = new HookVariable("LENS_CATEGORY_MAP", "b"); // Done
     public static final HookVariable MCANONICALDISPLAYNAME = new HookVariable("MCANONICALDISPLAYNAME", "aM"); // Done
-    public static final HookVariable NOTIFICATION_TYPE = new HookVariable("NOTIFICATION_TYPE", "b"); // Done
+    public static final HookVariable NOTIFICATION_TYPE = new HookVariable("NOTIFICATION_TYPE", "a"); // Done
     public static final HookVariable NO_AUTO_ADVANCE = new HookVariable("NO_AUTO_ADVANCE", "NO_AUTO_ADVANCE");
     public static final HookVariable RECEIVED_SNAP_PAYLOAD_HOLDER = new HookVariable("RECEIVED_SNAP_PAYLOAD_HOLDER", "b"); // Done
     public static final HookVariable RECEIVED_SNAP_PAYLOAD_MAP = new HookVariable("RECEIVED_SNAP_PAYLOAD_MAP", "a"); // Done
