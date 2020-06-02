@@ -7,9 +7,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.view.KeyEventDispatcher;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.gson.annotations.SerializedName;
 import com.ljmu.andre.snaptools.BuildConfig;
+import com.ljmu.andre.snaptools.EventBus.EventBus;
 import com.ljmu.andre.snaptools.EventBus.Events.PackEventRequest;
 import com.ljmu.andre.snaptools.EventBus.Events.PackEventRequest.EventRequest;
 import com.ljmu.andre.snaptools.R;
@@ -20,6 +22,7 @@ import com.ljmu.andre.snaptools.UIComponents.Adapters.ExpandableItemAdapter.Html
 import com.ljmu.andre.snaptools.UIComponents.Adapters.ExpandableItemAdapter.TextItemEntity;
 import com.ljmu.andre.snaptools.Utils.RequiresFramework;
 
+import kotlin.jvm.functions.Function1;
 import timber.log.Timber;
 
 import static com.ljmu.andre.snaptools.Utils.ContextHelper.getModuleResources;
@@ -44,12 +47,12 @@ public class ServerPackMetaData extends PackMetaData {
     @SerializedName("is_purchased")
     private Boolean isPurchased;
 
-    public ServerPackMetaData() {
-        super(PackEventRequest.EventHandler.ignoreEvents);
+    public ServerPackMetaData(PackEventRequest.EventHandler dispatcher) {
+        super(dispatcher);
     }
 
-    public static ServerPackMetaData getTutorialPack(String scVersion) {
-        return (ServerPackMetaData) new ServerPackMetaData()
+    public static ServerPackMetaData getTutorialPack(String scVersion, PackEventRequest.EventHandler dispatcher) {
+        return (ServerPackMetaData) new ServerPackMetaData(dispatcher)
                 .setPurchased(false)
                 .setDescription(htmlHighlight("Tutorial Item"))
                 .setHasUpdate(false)

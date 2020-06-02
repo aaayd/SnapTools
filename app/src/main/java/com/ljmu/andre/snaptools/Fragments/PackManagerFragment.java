@@ -25,7 +25,6 @@ import com.ljmu.andre.snaptools.EventBus.Events.PackEventRequest.EventRequest;
 import com.ljmu.andre.snaptools.Fragments.Tutorials.PackManagerTutorial;
 import com.ljmu.andre.snaptools.Framework.MetaData.ServerPackMetaData;
 import com.ljmu.andre.snaptools.R;
-import com.ljmu.andre.snaptools.UIComponents.Adapters.ExpandableItemAdapter;
 import com.ljmu.andre.snaptools.Utils.MiscUtils;
 import com.ljmu.andre.snaptools.Utils.TutorialDetail;
 
@@ -185,8 +184,12 @@ public class PackManagerFragment extends FragmentHelper {
         selectorFragment.generateMetaData();
     }
 
-    public void handleExpandedItem(ExpandableItemAdapter.ExpandableItemEntity<?> item) {
-        if (runningTutorial && !hasExpanded && item instanceof ServerPackMetaData) {
+    @Subscribe
+    public void handleItemExpandedEvent(ItemExpandedEvent expandedEvent) {
+        Timber.d("Item Expanded: " + expandedEvent);
+
+        if (runningTutorial && !hasExpanded &&
+                expandedEvent.getExpandedItem() instanceof ServerPackMetaData) {
             hasExpanded = true;
             progressTutorial();
         }

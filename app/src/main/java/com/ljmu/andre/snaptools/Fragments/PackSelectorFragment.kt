@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +22,10 @@ import com.ljmu.andre.snaptools.Framework.MetaData.LocalPackMetaData
 import com.ljmu.andre.snaptools.Framework.MetaData.PackMetaData
 import com.ljmu.andre.snaptools.R
 import com.ljmu.andre.snaptools.UIComponents.Adapters.ExpandableItemAdapter
-import com.ljmu.andre.snaptools.Utils.*
+import com.ljmu.andre.snaptools.Utils.AnimationUtils
+import com.ljmu.andre.snaptools.Utils.Result
+import com.ljmu.andre.snaptools.Utils.SafeToast
+import com.ljmu.andre.snaptools.Utils.consumeResult
 import com.ljmu.andre.snaptools.viewmodel.PackViewModel
 import kotlinx.android.synthetic.main.frag_pack_selector.*
 import timber.log.Timber
@@ -33,7 +37,7 @@ import timber.log.Timber
  */
 
 class PackSelectorFragment : FragmentHelper() {
-    @Suppress("UNCHECKED_CAST")
+//    @Suppress("UNCHECKED_CAST")
     val adapter: ExpandableItemAdapter<ExpandableItemAdapter.ExpandableItemEntity<Any>>
         get() {
             return recyclerView.adapter as? ExpandableItemAdapter<ExpandableItemAdapter.ExpandableItemEntity<Any>>
@@ -72,6 +76,23 @@ class PackSelectorFragment : FragmentHelper() {
             setEmptyView(R.layout.layout_empty_packs)
         }
 
+        // Listening to Packs in ViewModel
+        viewModel.localMetadata.observe(viewLifecycleOwner, Observer { packs ->
+
+            // Animating
+            recycler_pack_selector.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    val recycler = recycler_pack_selector ?: return
+                    //At this point the layout is complete and the
+                    //dimensions of recyclerView and any child views are known.
+                    AnimationUtils.sequentGroup(recycler)
+                    recycler.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                }
+            })
+            adapter.setNewData(packs)
+            swipe_layout.isRefreshing = false
+        })
+
         swipe_layout.setOnRefreshListener {
             if (runningTutorial) {
                 swipe_layout.isRefreshing = false
@@ -79,24 +100,11 @@ class PackSelectorFragment : FragmentHelper() {
             }
             viewModel.refreshLocalPacks(evtHandler)
         }
-
-        // Listening to Packs in ViewModel
-        viewModel.localMetadata.observe(viewLifecycleOwner, Observer { packs ->
-
-            // Animating
-            recycler_pack_selector?.animateSequentGroup()
-            adapter.setNewData(packs)
-            swipe_layout.isRefreshing = false
-        })
-
-        viewModel.eventDispatcher.addEventObserver(this) {
-            handlePackStateEvents(it)
-        }
     }
 
     override fun onPause() {
         super.onPause()
-        viewModel.clearLocalPacks()
+        viewModel.clearPacks()
     }
 
     override fun onResume() {
@@ -113,7 +121,7 @@ class PackSelectorFragment : FragmentHelper() {
             is PackUnloadEvent -> updatePackState(packEvents.packMetaData.name)
 
             is PackDeleteEvent -> {
-                val idx = viewModel.getInfoFromName(packEvents.packName, viewModel.localMetadata.value)!!.second
+                val idx = viewModel.getInfoFromName(packEvents.packName)!!.second
                 val adapter = recycler_pack_selector.adapter!! as ExpandableItemAdapter<*>
                 adapter.collapse(idx)
                 adapter.remove(idx)
@@ -167,7 +175,7 @@ class PackSelectorFragment : FragmentHelper() {
     }
 
     private fun updatePackState(packName: String) {
-        var (_, idx) = viewModel.getInfoFromName(packName, viewModel.localMetadata.value) ?: return
+        var (_, idx) = viewModel.getInfoFromName(packName) ?: return
         val adapter = recycler_pack_selector.adapter!! as ExpandableItemAdapter<*>
         adapter.notifyItemChanged(idx)
         var el = adapter.getItem(idx)

@@ -206,7 +206,7 @@ public class GetServerPacks {
             if (packObject.development != STApplication.DEBUG)
                 continue;
 
-            ServerPackMetaData serverMetaData = new ServerPackMetaData();
+            ServerPackMetaData serverMetaData = new ServerPackMetaData(PackEventRequest.EventHandler.ignoreEvents);
             packObject.bindMetaData(serverMetaData);
 
             if (installedMetaData != null) {
