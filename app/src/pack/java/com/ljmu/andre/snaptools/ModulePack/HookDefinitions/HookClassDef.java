@@ -23,7 +23,7 @@ public class HookClassDef extends ConstantDefiner<HookClassDef.HookClass> {
     public static final HookClass CHAT_VIDEO_METADATA = new HookClass("CHAT_VIDEO_METADATA", "aivs");//
     public static final HookClass CHEETAH_PROFILE_SETTINGS_CREATOR = new HookClass("CHEETAH_PROFILE_SETTINGS_CREATOR", "afdb");//
     public static final HookClass COUNTDOWNTIMER_VIEW = new HookClass("COUNTDOWNTIMER_VIEW", "com.snap.opera.view.CountdownTimerView");
-    public static final HookClass DOWNLOADER_RUNNABLE = new HookClass("DOWNLOADER_RUNNABLE", "aoew$2");//Not sure what the dollar sign is for but ill keep it
+    public static final HookClass DOWNLOADER_RUNNABLE = new HookClass("DOWNLOADER_RUNNABLE", "aoew$2");
     public static final HookClass ENCRYPTED_STREAM_BUILDER = new HookClass("ENCRYPTED_STREAM_BUILDER", "anxy");//
     public static final HookClass ENCRYPTION_ALGORITHM = new HookClass("ENCRYPTION_ALGORITHM", "com.snapchat.android.framework.crypto.CbcEncryptionAlgorithm");
     public static final HookClass ENUM_BATCHED_SNAP_POSITION = new HookClass("ENUM_BATCHED_SNAP_POSITION", "aaiw");//
@@ -85,6 +85,7 @@ public class HookClassDef extends ConstantDefiner<HookClassDef.HookClass> {
     public static final HookClass STORY_SNAP_PAYLOAD_BUILDER = new HookClass("STORY_SNAP_PAYLOAD_BUILDER", "abtf");
     public static final HookClass STORY_SPONSORED = new HookClass("STORY_ADVERT", "eng");
     public static final HookClass STORY_STATUS_UPDATER = new HookClass("STORY_STATUS_UPDATER", "abts");
+    public static final HookClass ADVANCE_FIX = new HookClass("ADVANCE_FIX", "aay$1");
     public static final HookClass TEXTURE_VIDEO_VIEW = new HookClass("TEXTURE_VIDEO_VIEW", "com.snap.opera.shared.view.TextureVideoView");
     public static final HookClass USER_PREFS = new HookClass("USER_PREFS", "com.snapchat.android.core.user.UserPrefsImpl");
 

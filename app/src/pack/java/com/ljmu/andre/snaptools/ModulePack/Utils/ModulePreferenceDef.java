@@ -87,6 +87,16 @@ public class ModulePreferenceDef extends ConstantDefiner<Preference> {
         }
     });
 
+    public static final Preference ACCOUNTS_PATH = new Preference(
+            "ACCOUNTS_PATH",
+            null, String.class, new ConditionalCheck() {
+        @NonNull
+        @Override
+        protected Object performConditionCheck(Preference preference, Object preferenceVal) {
+            return getPref(CONTENT_PATH) + "Accounts/";
+        }
+    });
+
     public static final Preference RECEIVED_FOLDER_NAME = new Preference(
             "RECEIVED_FOLDER_NAME",
             "Received", String.class

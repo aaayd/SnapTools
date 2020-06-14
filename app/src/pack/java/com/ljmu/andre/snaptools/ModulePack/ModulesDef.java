@@ -120,10 +120,17 @@ class ModulesDef extends ConstantDefiner<Modules> {
             "Allows you to view chats and snaps without marking them as viewed"
     );
 
+    public static final Modules ACCOUNT_MANAGER = new Modules(
+            13,
+            "Account Manager",
+            AccountManager.class,
+            "Allows for safely and securely swapping between Snapchat accounts, along with other account management features"
+    );
+
     // ===========================================================================
 
     public static final Modules FORCED_HOOKS = new Modules(
-            13,
+            14,
             "Forced Hooks",
             ForcedHooks.class,
             false

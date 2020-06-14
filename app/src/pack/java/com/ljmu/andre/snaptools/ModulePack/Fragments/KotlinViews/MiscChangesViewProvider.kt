@@ -1,5 +1,9 @@
 package com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews
 
+import android.content.ComponentName
+import android.content.pm.ComponentInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
@@ -18,18 +22,20 @@ import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.CustomViews.Com
 import com.ljmu.andre.snaptools.ModulePack.Fragments.KotlinViews.CustomViews.Companion.labelledSpinner
 import com.ljmu.andre.snaptools.ModulePack.Fragments.MiscChangesFragment
 import com.ljmu.andre.snaptools.ModulePack.Utils.KotlinUtils.Companion.toDp
+import com.ljmu.andre.snaptools.ModulePack.MiscChanges
 import com.ljmu.andre.snaptools.ModulePack.Utils.KotlinUtils.Companion.toId
 import com.ljmu.andre.snaptools.ModulePack.Utils.ListedViewPageAdapter
 import com.ljmu.andre.snaptools.ModulePack.Utils.ModulePreferenceDef.*
 import com.ljmu.andre.snaptools.ModulePack.Utils.Result
 import com.ljmu.andre.snaptools.ModulePack.Utils.ViewFactory
-import com.ljmu.andre.snaptools.Utils.Callable
 import com.ljmu.andre.snaptools.Utils.PreferenceHelpers.putAndKill
-import com.ljmu.andre.snaptools.Utils.ResourceUtils
 import com.ljmu.andre.snaptools.Utils.ResourceUtils.getColor
-import com.ljmu.andre.snaptools.Utils.themedSwitchCompatX
-import com.ljmu.andre.snaptools.Utils.viewPagerX
+import com.ljmu.andre.snaptools.Fragments.SettingsFragment
+import com.ljmu.andre.snaptools.Utils.*
 import org.jetbrains.anko.*
+import timber.log.Timber
+import java.util.Collections
+
 
 /**
  * This class was created by Andre R M (SID: 701439)
@@ -163,6 +169,26 @@ class MiscChangesViewProvider(
                             id = ResourceUtils.getIdFromString("switch_misc_context_paste")
                             isChecked = getPref(PASTE_BUTTON)
                             setOnCheckedChangeListener({ _, isChecked -> putAndKill(PASTE_BUTTON, isChecked, activity) })
+                        }.lparams(matchParent)
+
+                        header ("Alpha Settings")
+
+                        themedSwitchCompatX(ResourceUtils.getStyle(activity, "DefaultSwitch")) {
+                            text = "Force Disable Alpha"
+                            verticalPadding = dip(10)
+                            id = ResourceUtils.getIdFromString("switch_misc_alpha")
+                            isChecked = MiscChanges.isComponentEnabled(context.getPackageManager(), "com.snapchat.android", "com.snap.mushroom.MainActivity")
+                            setOnCheckedChangeListener { _, isChecked ->
+                                if (isChecked) {
+                                    Timber.w("isChecked -> $isChecked")
+                                    ShellUtils.sendCommand("busybox sed -i 's/mushroom/snapchat/g' /data/data/com.snapchat.android/shared_prefs/dynamicAppConfig.xml\n").subscribe()
+                                    ShellUtils.sendCommand("pm disable com.snapchat.android/com.snap.mushroom.MainActivity\n").subscribe()
+                                } else {
+                                    Timber.w("isChecked -> $isChecked")
+                                    ShellUtils.sendCommand("busybox sed -i 's/snapchat/mushroom/g' /data/data/com.snapchat.android/shared_prefs/dynamicAppConfig.xml\n").subscribe()
+                                    ShellUtils.sendCommand("pm enable com.snapchat.android/com.snap.mushroom.MainActivity\n").subscribe()
+                                }
+                            }
                         }.lparams(matchParent)
 
                         generalUICallable.call(this)

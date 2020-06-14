@@ -89,6 +89,7 @@ public class HookDef extends ConstantDefiner<HookDef.Hook> {
     public static final Hook STREAM_TYPE_CHECK_BYPASS = new Hook("STREAM_TYPE_CHECK_BYPASS", HookClassDef.ENCRYPTED_STREAM_BUILDER, "a", "zq", Integer.TYPE, Integer.TYPE);
     public static final Hook TEXTURE_VIDVIEW_SETLOOPING = new Hook("TEXTURE_VIDVIEW_SETLOOPING", HookClassDef.TEXTURE_VIDEO_VIEW, "setLooping", Boolean.TYPE);
     public static final Hook TEXTURE_VIDVIEW_START = new Hook("TEXTURE_VIDVIEW_START", HookClassDef.TEXTURE_VIDEO_VIEW, "start", new Object[0]);
+    public static final Hook DIVISION_FIX = new Hook("DIVISION_FIX", HookClassDef.ADVANCE_FIX, "a",Integer.TYPE, Integer.TYPE ,Integer.TYPE ,Integer.TYPE);
 
     public static class Hook extends Constant {
         private final HookClassDef.HookClass hookClass;

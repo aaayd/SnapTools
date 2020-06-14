@@ -46,9 +46,9 @@ android {
 
     defaultConfig {
         applicationId "com.ljmu.andre.snaptools"
-        minSdkVersion 26
-        targetSdkVersion 26
-        versionCode 1
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1 
         versionName "0.0.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -93,8 +93,8 @@ android {
     }
     productFlavors {
         prod {
-            versionName '2.1.0.2'
-            versionCode 133
+            versionName '2.1.0.3'
+            versionCode 134
         }
         beta {
             resValue 'string', 'app_name', 'SnapTools Beta'
@@ -161,7 +161,7 @@ dependencies {
     implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.1'
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"    // Video Compression
-    implementation 'net.ypresto.androidtranscoder:android-transcoder:0.2.0'
+    implementation 'com.github.ypresto:android-transcoder:-SNAPSHOT'
     //Color picker
     //compile 'com.github.QuadFlask:colorpicker:0.0.13'
     implementation 'com.g00fy2:versioncompare:1.2.4'
@@ -218,7 +218,7 @@ dependencies {
         // Kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
         // Video Compression
-        implementation 'net.ypresto.androidtranscoder:android-transcoder:0.2.0'
+        implementation 'com.github.ypresto:android-transcoder:-SNAPSHOT'
         //Color picker
         //compile 'com.github.QuadFlask:colorpicker:0.0.13'
         implementation 'com.g00fy2:versioncompare:1.2.4'
