@@ -281,8 +281,7 @@ public class ChatSaving extends ModuleHelper {
                                         }
 
                                     } catch (Throwable t) {
-                                        Timber.w("Chat Saving Error: " + t);
-
+                                        Timber.w(t);
                                     }
                                 }
                             });

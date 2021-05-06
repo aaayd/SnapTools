@@ -218,7 +218,7 @@ public class StealthViewing extends ModuleHelper {
                     }
             );
         } catch (HookNotFoundException | IllegalArgumentException e) {
-            Timber.e("Hook not found" + e);
+            Timber.e(e);
             moduleLoadState.fail();
         }
 

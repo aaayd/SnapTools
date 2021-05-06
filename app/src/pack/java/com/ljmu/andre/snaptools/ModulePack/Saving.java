@@ -75,7 +75,6 @@ import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.STORY_
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.STORY_METADATA_GET_OBJECT;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.STORY_METADATA_INSERT_OBJECT;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.STREAM_TYPE_CHECK_BYPASS;
-import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookDef.DIVISION_FIX;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookVariableDef.CHAT_METADATA_MEDIA;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookVariableDef.GROUP_ALGORITHM_WRAPPER_FIELD;
 import static com.ljmu.andre.snaptools.ModulePack.HookDefinitions.HookVariableDef.SENT_BATCHED_VIDEO_MEDIAHOLDER;
@@ -722,28 +721,6 @@ public class Saving extends ModuleHelper {
                 }
         );
 
-        hookMethod(
-                DIVISION_FIX,
-                new ST_MethodHook() {
-                    @Override
-                    protected void before(MethodHookParam param) throws Throwable {
-                        try {
-                            if ((Integer) param.args[0] == 0)
-                                param.args[0] = 1;
-                            if ((Integer) param.args[1] == 0)
-                                param.args[1] = 1;
-                            if ((Integer) param.args[2] == 0)
-                                param.args[2] = 1;
-                            if ((Integer) param.args[3] == 0)
-                                param.args[3] = 1;
-                        } catch (Exception e) {
-                            Timber.e("DIVISION_FIX HOOK -> "+ e);
-                        }
-                    }
-                }
-        );
-
-
         hasLoadedHooks = true;
     }
 
@@ -776,8 +753,9 @@ public class Saving extends ModuleHelper {
             Timber.e(e);
             return null;
         }
-        
+
         long timestamp = getObjectField(SENT_MEDIA_TIMESTAMP, mediaHolder);
+
         // Create Snap to get OutputFile =============================================
         SentSnap snap = new SentSnap()
                 .setContext(snapActivity)
