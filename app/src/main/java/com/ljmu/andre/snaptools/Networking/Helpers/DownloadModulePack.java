@@ -28,7 +28,7 @@ import static com.ljmu.andre.snaptools.Utils.FrameworkPreferencesDef.MODULES_PAT
 
 public class DownloadModulePack implements DownloadListener {
     private static final String VOLLEY_TAG = "pack_download";
-    private static final String PACK_BASE_URL = "https://github.com/haydhook/SnapTools_DataProvider_52/blob/master/Packs/Files/";
+    private static final String PACK_BASE_URL = "https://github.com/azenyx/SnapTools_DataProvider/blob/master/Packs/Files/";
 
     private Activity activity;
     private String packName;

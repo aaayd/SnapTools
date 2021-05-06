@@ -12,7 +12,7 @@ import static com.ljmu.andre.snaptools.Utils.MiscUtils.calcTimeDiff;
  */
 
 public class GetFeatures extends CachedFileDownloader {
-    private static final String FEATURES_URL = "https://raw.githubusercontent.comhaydhook/SnapTools_DataProvider_52/master/General/Features.txt";
+    private static final String FEATURES_URL = "https://raw.githubusercontent.com/azenyx/SnapTools_DataProvider/master/General/Features.txt";
 
     @Override
     protected boolean shouldUseCache() {

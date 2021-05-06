@@ -52,7 +52,7 @@ public class SnapDiskCache {
             insertSnapFileDetails(snap, byteArrayOutput.size(), tempSnapFile);
         } else {
             Timber.d("Snap video, creating ghostly temp file");
-            tempSnapFile = createSnapFileDetails(snap.getKey(), ".mp4?", byteArrayOutput.size());
+            tempSnapFile = createSnapFileDetails(snap.getKey(), ".mp4", byteArrayOutput.size());
         }
 
         Timber.d("Duplicating %s bytes", byteArrayOutput.size());

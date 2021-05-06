@@ -542,16 +542,6 @@ public class MainActivity
 
         if (installedSCVersion == null)
             return;
-
-        if (installedSCVersion.toLowerCase().contains("beta")) {
-            DialogFactory.createErrorDialog(
-                    this,
-                    "Snapchat Beta Detected",
-                    "Snapchat Beta version detected ("
-                            + installedSCVersion + ")"
-                            + "\nSnapTools will " + htmlHighlight("NEVER") + " support a Beta version of Snapchat as we require a stable base to work from"
-            ).show();
-        }
     }
 
     /**
